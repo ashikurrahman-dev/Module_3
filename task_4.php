@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 // Task 4: Multidimensional Array
 
@@ -10,13 +10,28 @@ $studentGrades = [
     'student2' => ['Math' => 90, 'English' => 80, 'Science' => 70],
     'student3' => ['Math' => 90, 'English' => 60, 'Science' => 60]
 ];
-function averageGrades($grades)
+function gradeCalculate($average)
 {
-    foreach ($grades as $student => $subjectGrade) {
-        $total = array_sum($subjectGrade);
-        $count = count($subjectGrade);
-        $average = $total / $count;
-        echo "Average grade for $student: $average\n";
+    if ($average <= 100 && $average >= 80) {
+        $result = "A+";
+    } elseif ($average < 80 && $average >= 60) {
+        $result = "A";
+    } elseif ($average < 60 && $average >= 45) {
+        $result = "B";
+    } else {
+        $result = "F";
+    }
+    return $result;
+}
+function studentGrades($grades)
+{
+    foreach ($grades as $student => $Grade) {
+        
+        $average = array_sum($Grade)/count($Grade);
+
+        $result=gradeCalculate($average);
+
+        echo "$student average: $average & grade: $result ";
     }
 }
-averageGrades($studentGrades);
+studentGrades($studentGrades);
